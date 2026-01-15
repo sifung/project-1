@@ -1,0 +1,775 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap');
+
+body {
+    background-color: #F0FFF0;
+    color: #556B2F;
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px 0;
+    overflow-y: auto;
+    background-image: 
+        radial-gradient(circle at 20% 30%, #E8F5E9 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, #C8E6C9 0%, transparent 40%),
+        linear-gradient(135deg, #E8F5E988 0%, #C8E6C988 100%);
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="%23BCCCDC" opacity="0.2"/></svg>') repeat;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.countdown-container {
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+    padding: 2.5rem;
+    background-color: rgba(232, 245, 233, 0.85); /* Soft green with transparency */
+    border-radius: 30px;
+    box-shadow: 
+        0 8px 32px rgba(200, 230, 200, 0.25),
+        0 0 0 2px rgba(232, 245, 233, 0.9),
+        0 0 0 4px rgba(200, 230, 200, 0.15);
+    border: 1px solid rgba(200, 230, 200, 0.6); /* Soft green border */
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    margin: 30px auto;
+    transition: all 0.3s ease;
+}
+
+.countdown-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 40px rgba(200, 230, 200, 0.3),
+        0 0 0 2px rgba(232, 245, 233, 0.9),
+        0 0 0 4px rgba(200, 230, 200, 0.2);
+}
+
+/* Removed shine animation effect */
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: #2E7D32; /* Soft green color */
+    font-weight: 700;
+    font-family: 'Parisienne', cursive;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+    letter-spacing: 1.5px;
+    position: relative;
+    display: inline-block;
+}
+
+.goal-progress {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #2E7D32, #81C784);
+    border-radius: 3px;
+}
+
+.current-date {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #000000; /* Black text */
+    font-style: italic;
+    font-weight: 500;
+}
+
+
+
+.digital-clock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.5px;
+    font-size: 7.5rem;
+    color: #000000; /* Black text */
+    margin: 1rem 0 2.5rem 0;
+    font-weight: bold;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+}
+
+.digital-clock .separator {
+    opacity: 1;
+}
+
+.countdown-display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.countdown-box {
+    background-color: rgba(232, 245, 233, 0.9); /* Soft green background */
+    padding: 1.5rem 2rem;
+    border-radius: 20px;
+    min-width: 150px;
+    box-shadow: 
+        0 4px 20px rgba(200, 230, 200, 0.25),
+        inset 0 0 15px rgba(232, 245, 233, 0.5);
+    border: 1px solid rgba(200, 230, 200, 0.7);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(6px);
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.4) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.countdown-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #BCCCDC;
+}
+
+.countdown-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 25px rgba(200, 230, 200, 0.4),
+        inset 0 0 15px rgba(232, 245, 233, 0.7);
+    background-color: rgba(232, 245, 233, 0.95);
+}
+
+.countdown-box span:first-child {
+    font-size: 3rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #000000; /* Black text */
+}
+
+.countdown-box span:last-child {
+    font-size: 1.1rem;
+    color: #000000; /* Black text */
+    font-weight: 600; /* Slightly bolder */
+    letter-spacing: 1px;
+}
+
+.theme-toggle {
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    width: 50px;
+    height: 25px;
+    border-radius: 15px;
+    background: #e0e0e0;
+    border: 1px solid #BCCCDC;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+[data-theme="dark"] .theme-toggle::before {
+    transform: translateX(25px);
+    background: #555;
+}
+
+
+[data-theme="dark"] .theme-toggle {
+    background: #333;
+}
+
+/* Dark mode styles - enhanced masculine theme */
+[data-theme="dark"] {
+    --bg-color: #050505;
+    --text-color: #f0f0f0;
+    --accent-color: #3a7dff; /* Brighter, more saturated blue */
+    --secondary-color: #2a5c3a; /* Darker green */
+    --container-bg: rgba(10, 10, 10, 0.98);
+    --box-bg: rgba(30, 30, 30, 0.98);
+    --metal-accent: #707070; /* Metallic gray */
+}
+
+[data-theme="dark"] body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    background-image: 
+        linear-gradient(135deg, 
+            rgba(10,10,10,0.9) 0%, 
+            rgba(30,30,30,0.9) 100%);
+}
+
+[data-theme="dark"] .countdown-container {
+    background-color: var(--container-bg);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.7),
+        0 0 0 2px var(--metal-accent),
+        0 0 0 4px var(--accent-color);
+    border: 2px solid var(--accent-color);
+    border-radius: 5px;
+}
+
+[data-theme="dark"] .countdown-box {
+    background-color: var(--box-bg);
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.5),
+        inset 0 0 15px rgba(0, 0, 0, 0.9);
+    border: 2px solid var(--metal-accent);
+    border-radius: 3px;
+}
+
+[data-theme="dark"] .countdown-box::before {
+    background: var(--accent-color);
+}
+
+[data-theme="dark"] h1 {
+    color: var(--accent-color);
+    font-family: 'Share Tech Mono', monospace;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+    letter-spacing: 3px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+[data-theme="dark"] h1::after {
+    background: linear-gradient(90deg, #4a6fa5, #2a3a50);
+}
+
+[data-theme="dark"] .countdown-box span:first-child {
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+[data-theme="dark"] .countdown-box span:last-child {
+    color: var(--text-color);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+[data-theme="dark"] .current-date {
+    color: var(--accent-color);
+    font-style: normal;
+}
+
+[data-theme="dark"] .digital-clock {
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+/* Responsive design */
+@media (max-width: 480px) { /* Mobile */
+    .countdown-container {
+        width: 95%;
+        padding: 1.5rem;
+        border-radius: 15px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .current-date {
+        font-size: 1.2rem;
+    }
+    
+    .digital-clock {
+        font-size: 3.5rem;
+        margin: 0.5rem 0 1.5rem 0;
+    }
+    
+    .countdown-display {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .countdown-box {
+        padding: 1rem;
+        min-width: 100%;
+    }
+    
+    .countdown-box span:first-child {
+        font-size: 2rem;
+    }
+    
+    .countdown-box span:last-child {
+        font-size: 0.9rem;
+    }
+    
+    .theme-toggle {
+        width: 40px;
+        height: 20px;
+        left: 15px;
+        top: 15px;
+    }
+    
+    .theme-toggle::before {
+        width: 16px;
+        height: 16px;
+        top: 2px;
+        left: 2px;
+    }
+    
+    [data-theme="dark"] .theme-toggle::before {
+        transform: translateX(20px);
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) { /* Tablet */
+    .countdown-container {
+        width: 90%;
+        padding: 2rem;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .digital-clock {
+        font-size: 5rem;
+    }
+    
+    .countdown-display {
+        gap: 1.5rem;
+    }
+    
+    .countdown-box {
+        min-width: 140px;
+        padding: 1.25rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) { /* Small PC/Tablet Landscape */
+    .countdown-container {
+        max-width: 700px;
+    }
+    
+    .countdown-display {
+        gap: 1.75rem;
+    }
+}
+
+@media (min-width: 1025px) { /* PC */
+    .countdown-container {
+        max-width: 800px;
+    }
+    
+    .countdown-display {
+        gap: 2rem;
+    }
+}
+
+/* Notifications Section */
+.notifications-container {
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto 50px;
+    padding: 20px;
+    background-color: rgba(232, 245, 233, 0.85); /* Soft green background */
+    border-radius: 25px;
+    box-shadow: 
+        0 8px 32px rgba(200, 230, 200, 0.25),
+        0 0 0 2px rgba(232, 245, 233, 0.9),
+        0 0 0 4px rgba(200, 230, 200, 0.15);
+    border: 1px solid rgba(200, 230, 200, 0.6);
+    backdrop-filter: blur(8px);
+}
+
+.notifications-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2E7D32; /* Soft green color */
+    font-family: 'Dancing Script', cursive; /* More feminine font */
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+    position: relative;
+    display: inline-block;
+}
+
+.notifications-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: linear-gradient(90deg, #2E7D32, #81C784);
+    border-radius: 2px;
+}
+
+.info-boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.info-box {
+    background-color: rgba(232, 245, 233, 0.8); /* Soft green background */
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 
+        0 4px 20px rgba(200, 230, 200, 0.25),
+        inset 0 0 15px rgba(232, 245, 233, 0.5);
+    border: 1px solid rgba(200, 230, 200, 0.7);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.info-box h3 {
+    margin-top: 0;
+    color: #4A5568; /* Soft blue-gray text */
+    border-bottom: 1px solid rgba(180, 200, 230, 0.5); /* Blue border */
+    padding-bottom: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.info-box h3::after {
+    content: '🌸';
+    position: absolute;
+    right: 0;
+    opacity: 0.5;
+}
+
+.weather-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 60px;
+    padding: 10px;
+    background-color: rgba(232, 245, 233, 0.4);
+    border-radius: 10px;
+    box-shadow: inset 0 0 8px rgba(232, 245, 233, 0.5);
+    transition: all 0.3s ease;
+}
+
+.weather-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        inset 0 0 8px rgba(235, 244, 255, 0.7),
+        0 4px 8px rgba(180, 200, 230, 0.2);
+}
+
+.weather-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.temperature {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.weather-desc {
+    font-size: 1rem;
+    max-width: 200px;
+}
+
+[data-theme="dark"] .weather-info {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.birthday-list {
+    min-height: 100px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+    margin-bottom: 10px;
+}
+
+.birthday-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.birthday-list::-webkit-scrollbar-track {
+    background: rgba(188, 204, 220, 0.2);
+    border-radius: 3px;
+}
+
+.birthday-list::-webkit-scrollbar-thumb {
+    background: #4CAF50;
+    border-radius: 3px;
+}
+
+[data-theme="dark"] .birthday-list::-webkit-scrollbar-track {
+    background: rgba(50, 50, 50, 0.5);
+}
+
+[data-theme="dark"] .birthday-list::-webkit-scrollbar-thumb {
+    background: #3e8e41;
+}
+
+.birthday-month {
+    margin: 15px 0 5px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(188, 204, 220, 0.5);
+}
+
+.birthday-month h4 {
+    margin: 0;
+    color: #4CAF50;
+    font-size: 1.1rem;
+}
+
+.birthday-item {
+    display: grid;
+    grid-template-columns: 30px 1fr auto auto;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    margin-bottom: 5px;
+    min-width: 0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.birthday-item:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: translateX(5px);
+}
+
+.birthday-item::before {
+    content: '🌿';
+    position: absolute;
+    left: -15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .birthday-item::before {
+    content: '➤';
+    color: var(--accent-color);
+}
+
+.birthday-item:hover::before {
+    opacity: 0.5;
+    left: -10px;
+}
+
+.birthday-name {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.birthday-date {
+    font-weight: bold;
+    text-align: center;
+    background: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.birthday-days {
+    font-weight: 600;
+    color: #4CAF50;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+[data-theme="dark"] .birthday-date {
+    background: #3e8e41;
+}
+
+[data-theme="dark"] .birthday-month h4 {
+    color: #4CAF50;
+}
+
+.delete-birthday {
+    background: none;
+    border: none;
+    color: #ff5252;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.delete-birthday:hover {
+    color: #ff0000;
+}
+
+[data-theme="dark"] .birthday-item {
+    background-color: rgba(30, 30, 30, 0.5);
+}
+
+[data-theme="dark"] .birthday-date {
+    background: var(--accent-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .birthday-days {
+    color: var(--accent-color);
+}
+
+[data-theme="dark"] .birthday-month h4 {
+    color: var(--accent-color);
+}
+
+[data-theme="dark"] .birthday-item:hover {
+    background-color: rgba(50, 50, 50, 0.6);
+}
+
+[data-theme="dark"] .birthday-name {
+    color: var(--text-color);
+}
+
+.birthday-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.toggle-view {
+    padding: 6px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.toggle-view:hover {
+    background-color: #3e8e41;
+}
+
+.add-birthday {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-birthday:hover {
+    background-color: #3e8e41;
+}
+
+[data-theme="dark"] .toggle-view,
+[data-theme="dark"] .add-birthday {
+    background-color: var(--accent-color);
+}
+
+[data-theme="dark"] .toggle-view:hover,
+[data-theme="dark"] .add-birthday:hover {
+    background-color: #0a6ebd;
+}
+
+[data-theme="dark"] .notifications-container {
+    background-color: rgba(20, 20, 20, 0.95);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        0 0 0 2px #2a2a2a,
+        0 0 0 4px rgba(74, 111, 165, 0.3);
+    border: 1px solid rgba(74, 111, 165, 0.5);
+    border-radius: 15px;
+}
+
+[data-theme="dark"] .notifications-container h2 {
+    color: var(--accent-color);
+    font-family: 'Share Tech Mono', monospace;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 2px;
+}
+
+[data-theme="dark"] .notifications-container h2::after {
+    background: linear-gradient(90deg, #4a6fa5, #2a3a50);
+}
+
+[data-theme="dark"] .info-box {
+    background-color: var(--box-bg);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        inset 0 0 10px rgba(20, 20, 40, 0.7);
+    border: 1px solid #4a6fa5;
+    border-radius: 10px;
+}
+
+[data-theme="dark"] .info-box h3 {
+    color: var(--text-color);
+    border-bottom-color: #4a6fa5;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .info-box h3::after {
+    content: '⚡';
+    opacity: 0.8;
+    color: var(--accent-color);
+}
+
+
+
