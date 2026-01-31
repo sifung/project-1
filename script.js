@@ -13,7 +13,8 @@ themeToggle.addEventListener('click', () => {
     localStorage.setItem('theme', newTheme);
 });
 
-const TARGET_YEAR = 2025;
+const TARGET_YEAR = new Date().getFullYear();
+document.querySelector('.goal-progress').textContent = `${TARGET_YEAR} Goal Progress`;
 
 function updateCountdown() {
     const now = new Date();
@@ -44,7 +45,7 @@ function updateCountdown() {
         daysPassed = totalDays;
         daysLeft = 0;
     } else {
-        daysPassed = Math.floor((now - yearStart) / (1000 * 60 * 60 * 24)) + 1;
+        daysPassed = Math.floor((now - yearStart) / (1000 * 60 * 60 * 24));
         daysLeft = totalDays - daysPassed;
     }
 
@@ -320,4 +321,3 @@ async function fetchWeather() {
 // Initial fetch and setup
 fetchWeather();
 setInterval(fetchWeather, 30 * 60 * 1000);
-
